@@ -29,3 +29,14 @@ comidasCollection.push(
 router.get('/',(req,res,next)=>{
   res.status(200).json(comidasCollection);
 })
+
+router.post('/'(req,res,next)=>{
+  var newComida = Object.assign(
+    {},
+    comidasStruct,
+    {id:uuid()},
+    req.body
+  );
+  comidasCollection.push(newComida);
+  res.status(200).json(newComida);
+})
