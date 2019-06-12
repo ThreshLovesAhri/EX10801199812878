@@ -28,7 +28,7 @@ comidasCollection.push(
 
 router.get('/',(req,res,next)=>{
   res.status(200).json(comidasCollection);
-})
+});
 
 router.post('/'(req,res,next)=>{
   var newComida = Object.assign(
@@ -39,4 +39,18 @@ router.post('/'(req,res,next)=>{
   );
   comidasCollection.push(newComida);
   res.status(200).json(newComida);
-})
+});
+
+route.put('/',(req,res,next)=>{
+  var id = req.params.id;
+  var comidaModificada={};
+  var comidaOriginal={};
+  comidasCollection=comidasCollection.map((e,i)=>{
+    if(e.id===id){
+      comidaOriginal=Object.assign({},e);
+      return comidaModificada=Object.assign({},e,req.body);
+    }
+    return e;
+  })
+  res.status(200).json({o:comidaOriginal, m:comidaModificada});
+});
