@@ -54,3 +54,16 @@ route.put('/',(req,res,next)=>{
   })
   res.status(200).json({o:comidaOriginal, m:comidaModificada});
 });
+
+route.delete('/:id',(req,res,next)=>{
+  var id=req.params.id;
+  var comidaBorrada={};
+  comidasCollection=comidasCollection.filter((e,i)=>{
+    if(e.id===id){
+      comidaBorrada=Object.assign({},e);
+      return false;
+    }
+    return true;
+  });
+  res.status(200).json({d:comidaBorrada, c:comidasCollection});
+});
